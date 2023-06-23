@@ -21,6 +21,10 @@ const jobsRouter = require("./routes/jobs")
 const notFoundMiddleware = require("./middleware/not-found")
 const errorHandlerMiddleware = require("./middleware/error-handler")
 
+app.get("/", (req, res) => {
+  res.send("Welcome to Job API.")
+})
+
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000, //15 minutes
@@ -40,7 +44,7 @@ app.use("/api/v1/jobs", authenticatedUser, jobsRouter)
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 
 const start = async () => {
   try {
